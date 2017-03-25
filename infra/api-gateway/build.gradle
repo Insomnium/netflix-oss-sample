@@ -1,0 +1,6 @@
+version '0.1.0'
+dependencies {
+    compile libpacks.spring
+//    compile libpacks.security
+    compile project(':commons')
+}

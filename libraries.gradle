@@ -1,0 +1,43 @@
+ext {
+    cxfVersion = '3.0.3'
+    restDocsVersion = '0.1.0.BUILD-SNAPSHOT'
+    powermockVersion = '1.6.2'
+    groovyVersion = '2.4.4'
+
+    libpacks = [
+            web: [
+                    'org.springframework.boot:spring-boot-starter-web'
+            ],
+
+            cloud : [
+                    'org.springframework.cloud:spring-cloud-starter-hystrix',
+                    'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard',
+                    'org.springframework.cloud:spring-cloud-starter-feign',
+                    'org.springframework.cloud:spring-cloud-starter-zuul',
+                    'org.springframework.cloud:spring-cloud-starter-config',
+                    'org.springframework.cloud:spring-cloud-starter-eureka'
+            ],
+
+            spring: [
+                    'org.springframework.boot:spring-boot-starter-actuator'
+            ],
+
+            groovy : [
+                    "org.codehaus.groovy:groovy-all:${groovyVersion}"
+            ],
+
+            logstash : [
+                    'net.logstash.logback:logstash-logback-encoder:4.4'
+            ],
+
+            testing : [
+                    'org.springframework.boot:spring-boot-starter-test',
+                    'org.spockframework:spock-core:1.0-groovy-2.4',
+                    'org.spockframework:spock-spring:1.0-groovy-2.0'
+            ],
+
+            lombok : [
+                    'org.projectlombok:lombok:1.16.4'
+            ]
+    ]
+}

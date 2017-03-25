@@ -1,0 +1,12 @@
+rootProject.name = 'netflix-oss-homework'
+
+include 'infra:config-server'
+include 'infra:eureka-server'
+include 'infra:api-gateway'
+
+include 'commons'
+
+include 'business-services:workspaces-api'
+include 'business-services:employees-api'
+
+
