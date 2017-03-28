@@ -2,7 +2,6 @@ package com.epam.hw.netflix.services;
 
 import com.epam.hw.netflix.domain.Employee;
 import com.epam.hw.netflix.exceptions.NoEmployeeFoundException;
-import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +10,6 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.lang.String.format;
 
-/**
- * Created by ins on 3/25/17.
- */
 @Service
 public class EmployeeService {
 

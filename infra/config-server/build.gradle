@@ -1,5 +1,6 @@
 version = '0.0.1'
 
 dependencies {
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-config-server'
+    compile libpacks.cloud_config_server
+    compile libpacks.spring_common
 }

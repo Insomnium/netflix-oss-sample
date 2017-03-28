@@ -5,17 +5,31 @@ ext {
     groovyVersion = '2.4.4'
 
     libpacks = [
-            web: [
-                    'org.springframework.boot:spring-boot-starter-web'
+            spring_common: [
+                    'org.springframework.boot:spring-boot-starter-web',
+                    'org.springframework.boot:spring-boot-starter-actuator'
             ],
 
-            cloud : [
-                    'org.springframework.cloud:spring-cloud-starter-hystrix',
-                    'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard',
-                    'org.springframework.cloud:spring-cloud-starter-feign',
-                    'org.springframework.cloud:spring-cloud-starter-zuul',
+            cloud_common: [
+                    'org.springframework.cloud:spring-cloud-starter-eureka',
                     'org.springframework.cloud:spring-cloud-starter-config',
-                    'org.springframework.cloud:spring-cloud-starter-eureka'
+                    'org.springframework.cloud:spring-cloud-starter-hystrix'
+            ],
+
+            cloud_eureka_server: [
+                    'org.springframework.cloud:spring-cloud-starter-eureka-server'
+            ],
+
+            cloud_config_server: [
+                    'org.springframework.cloud:spring-cloud-config-server'
+            ],
+
+            cloud_feign: [
+                    'org.springframework.cloud:spring-cloud-starter-feign'
+            ],
+
+            cloud_routing: [
+                    'org.springframework.cloud:spring-cloud-starter-zuul'
             ],
 
             spring: [

@@ -1,5 +1,6 @@
 version = '0.0.1'
 
 dependencies {
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
+    compile libpacks.spring_common
+    compile libpacks.cloud_eureka_server
 }

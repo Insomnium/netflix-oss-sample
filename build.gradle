@@ -41,10 +41,6 @@ subprojects {
 	}
 
 	dependencies {
-		compile 	libpacks.web
-		compile 	libpacks.spring
-		compile 	libpacks.cloud
-		compile 	libpacks.lombok
 		testCompile libpacks.testing
 	}
 

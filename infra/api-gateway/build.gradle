@@ -1,6 +1,7 @@
 version '0.1.0'
 dependencies {
-    compile libpacks.spring
-//    compile libpacks.security
+    compile libpacks.spring_common
+    compile libpacks.cloud_routing
+    compile libpacks.cloud_common
     compile project(':commons')
 }

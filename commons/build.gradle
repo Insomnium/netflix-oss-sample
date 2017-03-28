@@ -3,3 +3,8 @@ version '0.0.2'
 bootRepackage {
     enabled = false
 }
+
+dependencies {
+    compile libpacks.lombok
+    compile libpacks.cloud_feign
+}
