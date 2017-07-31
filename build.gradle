@@ -24,7 +24,7 @@ subprojects {
 	apply from: "${rootProject.projectDir}/libraries.gradle"
 
 	task wrapper(type: Wrapper) {
-		gradleVersion = '2.14'
+		gradleVersion = '3.5'
 	}
 
 	sourceCompatibility = 1.8
@@ -54,3 +54,4 @@ subprojects {
 		from sourceSets.main.allJava
 	}
 }
+
