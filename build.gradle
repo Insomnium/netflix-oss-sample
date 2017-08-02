@@ -9,6 +9,7 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
+		classpath 'com.bmuschko:gradle-docker-plugin:3.0.12'
 		classpath("io.spring.gradle:dependency-management-plugin:${dependencyManagementPluginVersion}")
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
@@ -19,8 +20,10 @@ subprojects {
 	apply plugin: 'java'
 	apply plugin: 'groovy'
 	apply plugin: 'idea'
-	apply plugin: 'spring-boot'
+	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'com.bmuschko.docker-remote-api'
+	apply plugin: 'com.bmuschko.docker-java-application'
 	apply from: "${rootProject.projectDir}/libraries.gradle"
 
 	task wrapper(type: Wrapper) {
