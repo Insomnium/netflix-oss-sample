@@ -16,7 +16,7 @@ buildscript {
 }
 
 subprojects {
-	group = "com.epam.hw.netflix"
+	group = "net.ins.marketplace"
 	apply plugin: 'java'
 	apply plugin: 'groovy'
 	apply plugin: 'idea'

@@ -4,3 +4,9 @@ dependencies {
     compile libpacks.cloud_config_server
     compile libpacks.spring_common
 }
+
+docker {
+    javaApplication {
+        baseImage = 'net.ins.docker/java-jce:8'
+    }
+}

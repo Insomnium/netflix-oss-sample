@@ -1,0 +1,5 @@
+#!/bin/bash
+
+script_full_path=$(dirname "$0")
+"$script_full_path/0_create_keystore"
+"$script_full_path/1_build_java-jce_container"
