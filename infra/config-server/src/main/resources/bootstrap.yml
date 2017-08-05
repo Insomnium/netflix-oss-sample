@@ -2,6 +2,7 @@ server:
   port: ${CONFIG_PORT:8888}
 
 # see http://localhost:8888/admin/env
+# see http://localhost:8888/eureka_server/default
 
 spring:
   cloud:
@@ -9,10 +10,3 @@ spring:
       server:
         git:
           uri: git@bitbucket.org:ins-ms/infra-configs.git
-
-encrypt:
-  key-store:
-    location:   file:${JKS_DIR:/}config-server.jks
-    password:   storepass123
-    secret:     keypass123
-    alias:      config-server-key
