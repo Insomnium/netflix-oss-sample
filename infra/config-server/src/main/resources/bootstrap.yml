@@ -3,10 +3,3 @@ server:
 
 # see http://localhost:8888/admin/env
 # see http://localhost:8888/eureka_server/default
-
-spring:
-  cloud:
-    config:
-      server:
-        git:
-          uri: git@bitbucket.org:ins-ms/infra-configs.git
