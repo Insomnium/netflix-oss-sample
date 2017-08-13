@@ -2,7 +2,7 @@ buildscript {
 	ext {
 		dependencyManagementPluginVersion = '0.6.1.RELEASE'
 		springBootVersion = '1.5.6.RELEASE'
-		springCouldBomVersion = 'Camden.SR7'
+		springCouldBomVersion = 'Dalston.SR2'
 	}
 	repositories {
 		mavenCentral()
