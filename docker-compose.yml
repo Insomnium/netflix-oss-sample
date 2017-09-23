@@ -1,0 +1,32 @@
+version: '3'
+
+# see .env file for compose variables
+
+services:
+  config-server:
+    image: "net.ins.marketplace/config-server:${CONFIG_SERVER_TAG}"
+    ports:
+      - "8888:8888"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+    environment:
+      - SPRING_PROFILES_ACTIVE=keystore
+
+  eureka:
+    image: "net.ins.marketplace/eureka:${EUREKA_TAG}"
+    depends_on:
+      - config-server
+    ports:
+      - "8761:8080"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+    environment:
+      - CONFIG_HOST=$HOSTNAME
