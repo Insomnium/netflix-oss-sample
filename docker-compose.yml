@@ -15,6 +15,11 @@ services:
         max_attempts: 3
     environment:
       - SPRING_PROFILES_ACTIVE=keystore
+      - KEYSTORE_PWD=storepass123
+      - KEY_PWD=keypass123
+      - SERVER_PORT=8888
+    volumes:
+      - "~/.ssh:/root/.ssh"
 
   eureka:
     image: "net.ins.marketplace/eureka:${EUREKA_TAG}"
