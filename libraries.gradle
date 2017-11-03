@@ -10,10 +10,18 @@ ext {
                     'org.springframework.boot:spring-boot-starter-actuator'
             ],
 
+            actuator: [
+                    'org.springframework.boot:spring-boot-starter-actuator'
+            ],
+
             cloud_common: [
                     'org.springframework.cloud:spring-cloud-starter-eureka',
                     'org.springframework.cloud:spring-cloud-starter-config',
                     'org.springframework.cloud:spring-cloud-starter-hystrix'
+            ],
+
+            cloud_eureka_starter: [
+                    'org.springframework.cloud:spring-cloud-starter-eureka',
             ],
 
             cloud_eureka_server: [

@@ -1,9 +1,16 @@
-spring.application.name: eureka
+spring:
+ application:
+  name: ${APP:eureka-server}
 
 eureka:
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    server:
-      waitTimeInMsWhenSyncEmpty: 0
-
+ registration:
+  enabled: true
+ client:
+  registerWithEureka: true
+  fetchRegistry: false
+  serviceUrl:
+   defaultZone: ${EUREKA_SERV:http://127.0.0.1:8763/eureka/}
+ server:
+  waitTimeInMsWhenSyncEmpty: 10000
+ instance:
+  appGroupName: infra
