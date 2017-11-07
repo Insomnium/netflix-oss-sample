@@ -14,3 +14,4 @@ eureka:
   waitTimeInMsWhenSyncEmpty: 10000
  instance:
   appGroupName: infra
+  prefer-ip-address: true
