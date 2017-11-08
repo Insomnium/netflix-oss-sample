@@ -18,7 +18,7 @@ eureka:
      leaseRenewalIntervalInSeconds: 10
      leaseExpirationDurationInSeconds: 30
      appGroupName: infra
-     prefer-ip-address: true
+     preferIpAddress: true
 
 # see http://localhost:8888/admin/env
 # see http://localhost:8888/eureka_server/default
