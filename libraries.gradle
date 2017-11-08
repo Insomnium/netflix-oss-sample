@@ -55,7 +55,8 @@ ext {
             testing : [
                     'org.springframework.boot:spring-boot-starter-test',
                     'org.spockframework:spock-core:1.1-groovy-2.4-rc-2',
-                    'org.spockframework:spock-spring:1.1-groovy-2.4-rc-2'
+                    'org.spockframework:spock-spring:1.1-groovy-2.4-rc-2',
+                    'junit:junit:4.+'
             ],
 
             lombok : [

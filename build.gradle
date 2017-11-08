@@ -3,6 +3,15 @@ buildscript {
 		dependencyManagementPluginVersion = '0.6.1.RELEASE'
 		springBootVersion = '1.5.6.RELEASE'
 		springCouldBomVersion = 'Dalston.SR4'
+		jacocoVersion = '0.7.9'
+
+		jacocoExc = ['**/**Data**',
+					 '**/**DTO**',
+					 '**/**Request**',
+					 '**/**Response**',
+					 'com/epam/hw/netflix/**Application**',
+					 'com/epam/hw/netflix/configuration/**',
+					 'com/epam/hw/netflix/domain/**']
 	}
 	repositories {
 		mavenCentral()
@@ -20,6 +29,7 @@ configure(subprojects) {
 	apply plugin: 'java'
 	apply plugin: 'groovy'
 	apply plugin: 'idea'
+	apply plugin: 'jacoco'
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 	apply plugin: 'com.bmuschko.docker-remote-api'
@@ -43,6 +53,47 @@ configure(subprojects) {
 		jcenter()
 	}
 
+	test {
+		reports {
+			junitXml.enabled = true
+			html.enabled = true
+		}
+//		outputs.dir snippetsDir
+	}
+
+	test.finalizedBy 'jacocoTestReport'
+
+	jacocoTestReport {
+		reports {
+			xml.enabled false
+			csv.enabled false
+			html.destination "${buildDir}/reports/coverage"
+		}
+		afterEvaluate {
+			classDirectories = files(classDirectories.files.collect {
+				fileTree(dir: it, exclude: jacocoExc)
+			})
+		}
+	}
+
+	jacocoTestCoverageVerification {
+		violationRules {
+			rule {
+				element = 'CLASS'
+				excludes = jacocoExc.stream().map{it.replace('/','.')}.collect()
+				limit {
+					counter = 'INSTRUCTION'
+					minimum = 0.7
+				}
+				limit {
+					counter = 'METHOD'
+					minimum = 0.8
+				}
+			}
+		}
+	}
+	check.dependsOn jacocoTestCoverageVerification
+
 	dependencies {
 		testCompile libpacks.testing
 	}
@@ -63,5 +114,11 @@ configure(subprojects) {
 	task sourceJar(type: Jar) {
 		from sourceSets.main.allJava
 	}
-}
 
+	task testReport(type: TestReport) {
+		destinationDir = file("$buildDir/reports/allTests")
+		reportOn subprojects*.test.binResultsDir
+	}
+
+	tasks.build.finalizedBy testReport
+}
