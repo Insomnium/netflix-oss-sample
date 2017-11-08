@@ -15,8 +15,8 @@ buildscript {
 	}
 }
 
-subprojects {
-	group = "net.ins.marketplace"
+configure(subprojects) {
+	group = "com.epam.hw.netflix"
 	apply plugin: 'java'
 	apply plugin: 'groovy'
 	apply plugin: 'idea'
@@ -45,6 +45,13 @@ subprojects {
 
 	dependencies {
 		testCompile libpacks.testing
+	}
+
+	configurations {
+		testCompile {
+			exclude group: 'org.springframework.cloud', module: 'spring-cloud-config-client'
+			exclude group: 'org.springframework.cloud', module: 'spring-cloud-starter-eureka'
+		}
 	}
 
 	dependencyManagement {

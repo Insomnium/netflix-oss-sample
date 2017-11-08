@@ -2,7 +2,7 @@ package com.epam.hw.netflix.controllers;
 
 import com.epam.hw.netflix.api.WorkspaceAPI;
 import com.epam.hw.netflix.domain.Workspace;
-import com.epam.hw.netflix.services.WorkplaceService;
+import com.epam.hw.netflix.services.WorkspaceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,23 +12,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.epam.hw.netflix.controllers.WorkspaceAPIController.ROOT_URI;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 
 @RestController
-@RequestMapping("/workspaces")
+@RequestMapping(ROOT_URI)
 @Slf4j
-public class WorkplaceAPIController implements WorkspaceAPI {
+public class WorkspaceAPIController implements WorkspaceAPI {
+
+    public static final String ROOT_URI = "/";
+    public static final String WORKSPACE_ID_URI = "/{id}";
 
     @Autowired
-    private WorkplaceService workplaceService;
+    private WorkspaceService workspaceService;
 
-    @GetMapping
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<Workspace> getAllWorkspaces() {
-        return workplaceService.getAll();
+        return workspaceService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = WORKSPACE_ID_URI, produces = APPLICATION_JSON_VALUE)
     public Workspace getWorkspaceById(@PathVariable("id") String id) {
         log.info("Instance {} received workspace request", this);
-        return workplaceService.findWorkspace(id);
+        return workspaceService.findWorkspace(id);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class WorkplaceService {
+public class WorkspaceService {
 
     private final WorkspacesRepo workspacesRepo;
 

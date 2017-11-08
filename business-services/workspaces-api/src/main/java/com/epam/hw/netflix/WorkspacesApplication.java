@@ -12,9 +12,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EnableConfigurationProperties(DummyWorkspaces.class)
-public class WorkplacesApplication {
+public class WorkspacesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WorkplacesApplication.class, args);
+		SpringApplication.run(WorkspacesApplication.class, args);
 	}
 }
