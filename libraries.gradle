@@ -28,6 +28,10 @@ ext {
                     'org.springframework.cloud:spring-cloud-starter-eureka-server'
             ],
 
+            cloud_config_client: [
+                    'org.springframework.cloud:spring-cloud-config-client'
+            ],
+
             cloud_config_server: [
                     'org.springframework.cloud:spring-cloud-config-server'
             ],
