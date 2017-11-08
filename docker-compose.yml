@@ -26,7 +26,7 @@ services:
     depends_on:
       - config-server
     ports:
-      - "8761:8080"
+      - "8763:8080"
     deploy:
       replicas: 1
       restart_policy:
