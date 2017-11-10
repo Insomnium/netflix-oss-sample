@@ -1,15 +1,15 @@
 package com.epam.hw.netflix.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Accessors(chain = true)
 public class Workspace {
     private String id;

@@ -1,14 +1,12 @@
 package com.epam.hw.netflix.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 public class Employee {
     private String id;

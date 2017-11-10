@@ -1,7 +1,34 @@
+server:
+  port: 8085
+
 spring:
-  application:
-    name: employees-api
-  cloud:
-    config:
-      uri: http://${CONFIG_HOST:localhost}:8888
-      failFast: true
+ application:
+  name: ${APP:employees-api}
+ config:
+  retry:
+   maxAttempts: 200
+   initialInterval: 500
+   maxInterval: 5000
+ cloud:
+  config:
+   enabled: true
+   failFast: true
+   label: ${CONFIG_BRANCH:master}
+   discovery:
+    enabled: true
+    serviceId: ${CONFIG_SERV:config-server}
+
+eureka:
+ client:
+  registryFetchIntervalSeconds: 5
+#  healthcheck:
+#   enabled: true
+  serviceUrl:
+   defaultZone: ${EUREKA_SERV:http://127.0.0.1:8763/eureka/}
+ instance:
+  leaseRenewalIntervalInSeconds: 10
+  appname: ${spring.application.name}
+  virtualHostName : ${spring.application.name}
+  preferIpAddress: true
+  metadataMap:
+   instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -2,7 +2,6 @@ package com.epam.hw.netflix.controllers
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
@@ -13,6 +12,7 @@ import static com.epam.hw.netflix.controllers.WorkspaceAPIController.ROOT_URI
 import static com.epam.hw.netflix.controllers.WorkspaceAPIController.WORKSPACE_ID_URI
 import static org.hamcrest.Matchers.equalTo
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
+import static org.springframework.http.MediaType.APPLICATION_JSON
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -39,7 +39,7 @@ class WorkspacesControllerSpec extends Specification {
     def 'Successfully get all workspaces'() {
         when: 'Request all workspaces'
         def response = mockMvc.perform(get(ROOT_URI)
-                .accept(MediaType.APPLICATION_JSON))
+                .accept(APPLICATION_JSON))
 
         then: 'All workspaces received'
         response.andExpect(status().isOk())
@@ -58,7 +58,7 @@ class WorkspacesControllerSpec extends Specification {
     def 'Successfully get workspace by id'() {
         when: 'Request workspace by id'
         def response = mockMvc.perform(get(WORKSPACE_ID_URI, '0000001')
-                .accept(MediaType.APPLICATION_JSON))
+                .accept(APPLICATION_JSON))
 
         then: 'Received workspace'
         response.andExpect(status().isOk())
@@ -72,9 +72,9 @@ class WorkspacesControllerSpec extends Specification {
     def 'Get 404 status if workspace not found'() {
         when: 'Request non-existent workspace by id'
         def response = mockMvc.perform(get(WORKSPACE_ID_URI, '0000003')
-                .accept(MediaType.APPLICATION_JSON))
+                .accept(APPLICATION_JSON))
 
-        then: 'Received 404 status'
+        then: 'Receive 404 status'
         response.andExpect(status().isNotFound())
     }
 }
