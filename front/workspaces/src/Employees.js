@@ -3,23 +3,19 @@ import React, { Component } from 'react';
 import Employee from './Employee'
 
 class Employees extends Component {
-    // renderEmployee(e) {
-    //     return <Employee value={e} />
-    // }
-    constructor() {
-        super();
-        this.state = {
-            employees: [
-                { id: '00001', firstName: 'Petr', lastName: 'Petrov', email: 'PPetrov@gmail.com', workspaceId: '0000000000001' },
-                { id: '00002', firstName: 'Ivan', lastName: 'Ivanov', email: 'IIvanov@gmail.com', workspaceId: '0000000000002' },
-            ]
-        }
+    constructor(props) {
+        super(props);
     }
     render() {
         return (
-            <table>
+            <table border="1">
+                <tr>
+                    {this.props.headers.map(colName =>
+                        <th align="left">{colName}</th>
+                    )}
+                </tr>
                 <tbody>
-                    {this.state.employees.map((e, i) => <Employee employee={e}/>)}
+                    {this.props.employees.map((e, i) => <Employee idx={i} employee={e}/>)}
                 </tbody>
             </table>
         );
