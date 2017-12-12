@@ -3,3 +3,26 @@
 
 build
 .gradle
+
+
+# npm & stuff
+
+# dependencies
+front/workspaces/node_modules
+
+# testing
+front/workspaces/coverage
+
+# production
+front/workspaces/build
+
+# misc
+front/workspaces/.DS_Store
+front/workspaces/.env.local
+front/workspaces/.env.development.local
+front/workspaces/.env.test.local
+front/workspaces/.env.production.local
+
+front/workspaces/npm-debug.log*
+front/workspaces/yarn-debug.log*
+front/workspaces/yarn-error.log*
