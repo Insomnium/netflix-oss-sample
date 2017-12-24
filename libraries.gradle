@@ -20,6 +20,11 @@ ext {
                     'org.springframework.cloud:spring-cloud-starter-hystrix'
             ],
 
+            cloud_stream_kafka: [
+                    'org.springframework.cloud:spring-cloud-stream',
+                    'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+            ],
+
             cloud_eureka_starter: [
                     'org.springframework.cloud:spring-cloud-starter-eureka',
             ],
