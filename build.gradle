@@ -4,6 +4,7 @@ buildscript {
 		springBootVersion = '1.5.9.RELEASE'
 		springCloudBomVersion = 'Dalston.SR4'
 		springCloudStreamVersion = 'Chelsea.SR2'
+		springPlatformVersion = 'Brussels-SR6'
 		jacocoVersion = '0.7.9'
 
 		jacocoExc = ['**/**Data**',
@@ -108,11 +109,23 @@ configure(subprojects) {
 	}
 
 	dependencyManagement {
-		imports {
-			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudBomVersion}"
-			mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:${springCloudStreamVersion}"
+		dependencies {
+			imports {
+				mavenBom "io.spring.platform:platform-bom:${springPlatformVersion}"
+				mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudBomVersion}"
+				mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:${springCloudStreamVersion}"
+			}
+
+			dependency 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0'
 		}
 	}
+
+	task resolveAllDependencies {
+		doLast {
+			configurations.all { it.resolve() }
+		}
+	}
+
 
 	task sourceJar(type: Jar) {
 		from sourceSets.main.allJava

@@ -25,6 +25,10 @@ ext {
                     'org.springframework.cloud:spring-cloud-starter-stream-kafka'
             ],
 
+            spring_data_mongo: [
+                    'org.springframework.boot:spring-boot-starter-data-mongodb'
+            ],
+
             cloud_eureka_starter: [
                     'org.springframework.cloud:spring-cloud-starter-eureka',
             ],

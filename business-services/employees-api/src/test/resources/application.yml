@@ -1,4 +1,0 @@
-employees:
-  dummy:
-    - { id: '00001', firstName: 'Ivanov', lastName: 'Ivan', email: 'IIvanov@mail.org', workspaceId: '007' }
-    - { id: '00002', firstName: 'Petrov', lastName: 'Petr', email: 'PPetrov@mail.org', workspaceId: '008' }

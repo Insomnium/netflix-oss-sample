@@ -1,4 +1,6 @@
-workspaces:
+limits:
   dummy:
-    - { "id": "0000001", "unit": 1, "seat": 1, "serialNumber": "d91f00a5-b5a2-48ce-8c02-71ee518d8407", "osFamily": "WINDOWS" }
-    - { "id": "0000002", "unit": 1, "seat": 2, "serialNumber": "531b3b85-b628-44d9-85db-3aae6dbff523", "osFamily": "LINUX" }
+    "01234567890000000000":
+      { "limit": 2499999.99, "currencyCode": "EUR" }
+    "01234567890000000001":
+      { "limit": 10000000.00, "currencyCode": "RUR" }
