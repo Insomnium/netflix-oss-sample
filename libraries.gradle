@@ -72,6 +72,10 @@ ext {
                     'junit:junit:4.+'
             ],
 
+            testing_mongo: [
+                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+            ],
+
             lombok : [
                     'org.projectlombok:lombok:1.16.4'
             ]

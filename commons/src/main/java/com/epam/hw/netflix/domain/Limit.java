@@ -1,6 +1,7 @@
 package com.epam.hw.netflix.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -12,6 +13,7 @@ import static com.epam.hw.netflix.domain.Limit.COLLECTION;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Document(collection = COLLECTION)
 public class Limit {
     public static final String COLLECTION = "limits";

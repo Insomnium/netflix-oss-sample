@@ -10,7 +10,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableDiscoveryClient
-@EnableConfigurationProperties(DummyCreditLimits.class)
 public class CreditLimitApplication {
 
 	public static void main(String[] args) {

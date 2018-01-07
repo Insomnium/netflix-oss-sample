@@ -19,7 +19,7 @@ public class CreditLimitService {
     private final CreditLimitRepo creditLimitRepo;
 
     public CreditLimit checkLimit(String cardNumber, Amount amount) {
-        Limit limit = creditLimitRepo.findOne(cardNumber);
+        Limit limit = creditLimitRepo.findByCardNumber(cardNumber);
         return ofNullable(limit)
                 .map(l -> checkLimit(l, amount))
                 .orElse(new CreditLimit(APPROVED));

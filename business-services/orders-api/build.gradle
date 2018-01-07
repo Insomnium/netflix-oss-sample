@@ -7,5 +7,5 @@ dependencies {
     compile libpacks.spring_data_mongo
     compile libpacks.groovy
 
-    testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+    testCompile libpacks.testing_mongo
 }
