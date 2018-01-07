@@ -1,12 +1,9 @@
 package com.epam.hw.netflix.repository;
 
 
-import com.epam.hw.netflix.domain.CreditLimit;
+import com.epam.hw.netflix.domain.Limit;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.List;
-import java.util.Map;
+public interface CreditLimitRepo extends MongoRepository<Limit, String> {
 
-public interface CreditLimitRepo {
-    Map<String, CreditLimit> getAll();
-    CreditLimit findById(String id);
 }

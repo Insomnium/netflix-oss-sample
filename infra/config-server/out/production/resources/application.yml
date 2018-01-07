@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://bitbucket.org/ins-ms/infra-configs.git
+          username: Insomnium
+          password: '{cipher}AgCMF+N1Cx4CUaBsnOmSwgepDnIHtA06Vr0kHZwaD98G86rs1kJ436qOXSytSMwFokzoIKmkhqQrcTLf8t3qehZOZvnnM4TLKxDLBbMlr9JrXVnbbBxB62CJVre7Y1/wibFvT+5Rev6/Gn90Hwm9P6bRfYqxJFHPgAqicvVZWnoQib15uK6eSOfTXw3tLWNCRe0vYRsE5aI2e1+YW6+ivloNXCCPrBZUPd4hyidb6Wu2NGkZKZ2mTRHXM/HDWqoljC915J+bvzULPkFQFH8TomEdzOJ8RCuFpCK+G95cM6FVQCBze0d38LXZe0l2f8gkH+fFg1BeWubsIT/aSUk0naWfpk6YGuFA1eJzwGaxLmOi0dWL5BkPOxA7odWZCU4Uj9wpehyk3wihx6/DSbrC4QkgDAO9bMJ2tlSEYeOXtERldaH0xuleMTGcHiW0HeRV1YTvodvu1FG8xOwLP8eO19PBpJULFKunkfxwgvEcCHAW2f/y/S9QTaDUAbqqs3gD2HC4hZ75riHMOdu3ZobLQEWZblfWsHVZlVlg0e0XzrQe/GvaBRSBks59zCH5kRCuJJB+S8nvSvbP4Yf9Z/nvnVFcglmMIT7g6l4TYVlwQIkwOen10e1bCyt1vVjgQ9SSQVhfy5AuxzXt2yTZy8KQwnfGbmP2jFT2XMiztXj/ZxptVgPqYgjZT4HZz2Pb1KIYxLEnxU5t51GIyPPc6G3CG1/+'
+
+server:
+ port: ${PORT:8890}

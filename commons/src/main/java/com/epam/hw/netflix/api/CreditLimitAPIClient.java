@@ -13,6 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @FeignClient(name = "credit-limit-api")
 public interface CreditLimitAPIClient {
 
+    // TODO: validation
     @PostMapping(value = "/{cardNumber}", consumes = APPLICATION_JSON_VALUE)
     CreditLimit getCreditLimit(@PathVariable("cardNumber") String cardNumber, @RequestBody Amount amount);
 }

@@ -1,0 +1,16 @@
+spring:
+ application:
+  name: ${APP:config-server}
+
+eureka:
+ client:
+  registryFetchIntervalSeconds: 5
+  serviceUrl:
+   defaultZone: ${EUREKA_SERV:http://127.0.0.1:8763/eureka/}
+ instance:
+  leaseRenewalIntervalInSeconds: 10
+  leaseExpirationDurationInSeconds: 30
+  appGroupName: infra
+
+# see http://localhost:8888/admin/env
+# see http://localhost:8888/eureka_server/default

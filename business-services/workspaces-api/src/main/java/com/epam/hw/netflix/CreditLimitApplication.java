@@ -1,6 +1,5 @@
 package com.epam.hw.netflix;
 
-import com.epam.hw.netflix.repository.DummyCreditLimits;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

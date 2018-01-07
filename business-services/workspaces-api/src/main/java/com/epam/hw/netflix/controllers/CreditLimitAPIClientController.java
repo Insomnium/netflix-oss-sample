@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 import static com.epam.hw.netflix.controllers.CreditLimitAPIClientController.ROOT_URI;
@@ -28,14 +29,9 @@ public class CreditLimitAPIClientController implements CreditLimitAPIClient {
     @Autowired
     private CreditLimitService creditLimitService;
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public Map<String, CreditLimit> getAllCreditLimits() {
-        return creditLimitService.getAll();
-    }
-
     @Override
     public CreditLimit getCreditLimit(String cardNumber, Amount amount) {
         log.info("Instance {} received credit limit request", this);
-        throw new UnsupportedOperationException("TODO: check limit");
+        return creditLimitService.checkLimit(cardNumber, amount);
     }
 }
