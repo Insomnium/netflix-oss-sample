@@ -22,6 +22,7 @@ eureka:
 
 # see http://localhost:8888/admin/env
 # see http://localhost:8888/eureka_server/default
+# see http://localhost:8890/orders-api/vanaheim
 
 management:
   security:
