@@ -6,7 +6,7 @@ include 'infra:api-gateway'
 
 include 'commons'
 
-include 'business-services:workspaces-api'
+include 'business-services:credit-limit-api'
 include 'business-services:orders-api'
 
 

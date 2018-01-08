@@ -6,14 +6,10 @@ import com.epam.hw.netflix.domain.CreditLimit
 import com.epam.hw.netflix.domain.Currency
 import com.epam.hw.netflix.domain.Order
 import com.epam.hw.netflix.repository.OrdersRepo
-import groovy.json.JsonOutput
-import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
-import org.springframework.web.context.WebApplicationContext
 
 import static com.epam.hw.netflix.domain.CreditLimitStatus.APPROVED
 import static com.epam.hw.netflix.domain.CreditLimitStatus.EXCEEDED
@@ -21,7 +17,6 @@ import static com.epam.hw.netflix.domain.OrderStatus.DRAFT
 import static groovy.json.JsonOutput.toJson
 import static org.hamcrest.Matchers.notNullValue
 import static org.mockito.Matchers.eq
-import static org.mockito.Mockito.reset
 import static org.mockito.Mockito.when
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import static org.springframework.http.MediaType.APPLICATION_JSON
@@ -43,7 +38,7 @@ class OrderControllerSpec extends BaseIntegrationSpec {
     OrdersRepo ordersRepo
 
     @MockBean
-    CreditLimitAPIClient workspaceAPIClient
+    CreditLimitAPIClient creditLimitAPIClient
 
     def setup() {
         ordersRepo.deleteAll()
@@ -52,7 +47,7 @@ class OrderControllerSpec extends BaseIntegrationSpec {
     def 'Successfully create new order if credit limit not exceeded'() {
         given: 'request for new order'
         def order = new Order(null, "0000001", "12345678901234567890", new Amount(2500000, new Currency('EUR', 100)), DRAFT)
-        when(workspaceAPIClient.getCreditLimit(eq(order.cardNumber), eq(order.amount))) thenReturn new CreditLimit(APPROVED)
+        when(creditLimitAPIClient.getCreditLimit(eq(order.cardNumber), eq(order.amount))) thenReturn new CreditLimit(APPROVED)
 
         when: 'request sent to order service'
         def response = mockMvc.perform(post("/")
@@ -76,7 +71,7 @@ class OrderControllerSpec extends BaseIntegrationSpec {
     def 'Fail creating new order if credit limit exceeded'() {
         given: 'request for new order'
         def order = new Order(null, "0000001", "12345678901234567890", new Amount(2500000, new Currency('EUR', 100)), DRAFT)
-        when(workspaceAPIClient.getCreditLimit(eq(order.cardNumber), eq(order.amount))) thenReturn new CreditLimit(EXCEEDED)
+        when(creditLimitAPIClient.getCreditLimit(eq(order.cardNumber), eq(order.amount))) thenReturn new CreditLimit(EXCEEDED)
 
         when: 'request sent to order service'
         def response = mockMvc.perform(post("/")

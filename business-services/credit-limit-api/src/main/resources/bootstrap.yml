@@ -3,7 +3,7 @@ server:
 
 spring:
  application:
-  name: ${APP:workspaces-api}
+  name: ${APP:credit-limit-api}
  config:
   retry:
    maxAttempts: 200
