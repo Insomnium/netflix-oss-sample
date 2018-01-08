@@ -1,6 +1,0 @@
-limits:
-  dummy:
-    "01234567890000000000":
-      { "limit": 2499999.99, "currencyCode": "EUR" }
-    "01234567890000000001":
-      { "limit": 10000000.00, "currencyCode": "RUR" }

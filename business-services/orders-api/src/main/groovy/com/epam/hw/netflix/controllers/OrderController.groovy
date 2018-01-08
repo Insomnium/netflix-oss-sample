@@ -19,10 +19,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 @RequestMapping("/")
 class OrderController {
 
-    public static final String ROOT_URI = "/";
-
     @Autowired
-    OrderService orderService
+    private OrderService orderService
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)

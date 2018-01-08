@@ -28,7 +28,7 @@ public class CreditLimitService {
     private CreditLimit checkLimit(Limit dbLimit, Amount amount) {
         Long maxAmount = dbLimit.getLimit();
 
-        if (maxAmount != null && amount.getAmount().compareTo(extractAmount(dbLimit.getCurrencyCode(), amount)) > 0) {
+        if (maxAmount != null && extractAmount(dbLimit.getCurrencyCode(), amount).compareTo(maxAmount) > 0) {
             return new CreditLimit(EXCEEDED);
         }
 
@@ -36,7 +36,9 @@ public class CreditLimitService {
     }
 
     private Long extractAmount(String currencyCode, Amount amount) {
-        // TODO: if currencyCode != amount.currencyCode -> convert(amount.value, currencyCode) else amount.value
-        return null;
+        if (!amount.getCurrency().getCode().equals(currencyCode)) {
+            throw new UnsupportedOperationException("TODO: convert(amount.value, currencyCode)");
+        }
+        return amount.getAmount();
     }
 }

@@ -6,7 +6,12 @@ import com.epam.hw.netflix.domain.CreditLimit;
 import com.epam.hw.netflix.services.CreditLimitService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
 @RestController
@@ -17,7 +22,8 @@ public class CreditLimitAPIClientController implements CreditLimitAPIClient {
     private CreditLimitService creditLimitService;
 
     @Override
-    public CreditLimit getCreditLimit(String cardNumber, Amount amount) {
+//    @PostMapping(value = LIMIT_BY_CARD_NUMBER_URI, consumes = APPLICATION_JSON_VALUE)
+    public CreditLimit getCreditLimit(@PathVariable("cardNumber") String cardNumber, @RequestBody Amount amount) {
         log.info("Instance {} received credit limit request", this);
         return creditLimitService.checkLimit(cardNumber, amount);
     }
