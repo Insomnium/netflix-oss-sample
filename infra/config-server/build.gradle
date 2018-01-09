@@ -2,5 +2,12 @@ version = '0.0.1'
 
 dependencies {
     compile libpacks.cloud_config_server
-    compile libpacks.spring_common
+    compile libpacks.cloud_eureka_starter
+    compile libpacks.actuator
+}
+
+docker {
+    javaApplication {
+        baseImage = 'net.ins.docker/java-jce:8'
+    }
 }

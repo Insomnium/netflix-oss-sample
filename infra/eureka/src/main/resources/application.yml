@@ -1,0 +1,2 @@
+server:
+  port: ${EUREKA_PORT:8763}

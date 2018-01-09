@@ -1,7 +1,30 @@
 spring:
   application:
-    name: sample-api-gateway
+    name: gateway
+  profiles:
+    active: business
   cloud:
     config:
-      uri: http://${CONFIG_HOST:localhost}:8888
-      failFast: true
+     enabled: true
+     failFast: true
+     label: ${CONFIG_BRANCH:master}
+     discovery:
+      enabled: true
+      serviceId: ${CONFIG_SERV:config-server}
+
+eureka:
+ client:
+  registryFetchIntervalSeconds: 5
+  enabled: true
+  serviceUrl:
+   defaultZone: ${EUREKA_SERV:http://127.0.0.1:8763/eureka/}
+ instance:
+  # It tells eureka how often CLIENT must send heartbeats for eureka to think it is alive
+  leaseRenewalIntervalInSeconds: 10
+  # It tells eureka what duration it must take to think registered instance is dead
+  leaseExpirationDurationInSeconds: 15
+  appname: ${spring.application.name}
+  virtualHostName : ${spring.application.name}
+  preferIpAddress: true
+  metadataMap:
+   instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}

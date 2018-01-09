@@ -1,17 +1,27 @@
-## Практическое задание по микросервисной архитектуре 
-###Часть I
+# Microservice based "Marketplace"
 
-1. run `config-server` with default `application.yml`. Config-Server will get running on port **8888**
-2. run `eureka-server` with default `bootstrap.yml` so it will run on port **8989** (that is not default eureka port)
-3. run `workspaces-api` - 2 instances (with `-Dserver.port=9090` and `-Dserver.port=9091` JVM args)
-Consider services are working correctly. Send GET requests to `http://localhost:9090/workspaces/0000001` and `http://localhost:9091/workspaces/0000001` URIs 
-4. run `employees-api` (`-Dserver.port=9093`)
-Check employees api by sending GET request to `http://localhost:9093/employees/0000001`. 
-Send several request and check that feign client applies round-robin for **workspaces-api** service.
-5. run `api-gateway` on port 9094. Set it up to make URLs below serve and proxy requests to underlying business services:
- ```
- http://localhost:9094/workspaces-api/workspaces/0000001
- http://localhost:9094/employees-api/employees/0000001
- ```
+## Preparation
+1. Generate `config-server.jks` keystore
+2. Build base java image with JCE 
+    ```bash
+    ./setup/run_all
+    ```
 
-Make business service work by applying eureka URL setting as common for all services on config-server.
+## Check config server
+1. Run config server 
+    ```bash
+    docker run -p 8888:8888 -it net.ins.marketplace/config-server:0.0.1
+    ``` 
+2. Try to encrypt some value
+    ```bash
+    DECRYPTED=$(curl localhost:8888/encrypt -d foo)
+    ```
+3. Then check it sucessfully decrypted
+    ```bash
+    curl localhost:8888/decrypt -d $DECRYPTED
+    ```
+    
+TODO для домашки:
+1. Сначала настроить и поднять eureka
+2. Затем config-server (с регистрацией в eureka => сервисы натравливать на config-server по serviceId + бранч)
+3. TODO: понять, почему не всегда с первого раза стартуют eureka и config-server

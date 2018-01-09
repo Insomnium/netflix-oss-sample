@@ -1,0 +1,4 @@
+[submodule "infra-configs"]
+	path = infra-configs
+	url = https://bitbucket.org/ins-ms/infra-configs.git
+	branch = master

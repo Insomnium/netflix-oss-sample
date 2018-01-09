@@ -1,7 +1,0 @@
-version = '0.0.1'
-
-dependencies {
-    compile project(':commons')
-    compile libpacks.spring_common
-    compile libpacks.cloud_common
-}

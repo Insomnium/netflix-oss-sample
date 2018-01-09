@@ -1,26 +1,42 @@
 buildscript {
 	ext {
 		dependencyManagementPluginVersion = '0.6.1.RELEASE'
-		springBootVersion = '1.5.6.RELEASE'
-		springCouldBomVersion = 'Camden.SR7'
+		springBootVersion = '1.5.9.RELEASE'
+		springCloudBomVersion = 'Dalston.SR4'
+		springCloudStreamVersion = 'Chelsea.SR2'
+		springPlatformVersion = 'Brussels-SR6'
+		jacocoVersion = '0.7.9'
+
+		jacocoExc = ['**/**Data**',
+					 '**/**DTO**',
+					 '**/**Request**',
+					 '**/**Response**',
+					 '**/**Repo**',
+					 'net/ins/hw/netflix/**Application**',
+					 'net/ins/hw/netflix/configuration/**',
+					 'net/ins/hw/netflix/domain/**']
 	}
 	repositories {
 		mavenCentral()
 		jcenter()
 	}
 	dependencies {
+		classpath 'com.bmuschko:gradle-docker-plugin:3.0.12'
 		classpath("io.spring.gradle:dependency-management-plugin:${dependencyManagementPluginVersion}")
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
 
-subprojects {
-	group = "com.epam.hw.netflix"
+configure(subprojects) {
+	group = "net.ins.hw.netflix"
 	apply plugin: 'java'
 	apply plugin: 'groovy'
 	apply plugin: 'idea'
-	apply plugin: 'spring-boot'
+	apply plugin: 'jacoco'
+	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'com.bmuschko.docker-remote-api'
+	apply plugin: 'com.bmuschko.docker-java-application'
 	apply from: "${rootProject.projectDir}/libraries.gradle"
 
 	task wrapper(type: Wrapper) {
@@ -40,18 +56,84 @@ subprojects {
 		jcenter()
 	}
 
+	test {
+		reports {
+			junitXml.enabled = true
+			html.enabled = true
+		}
+	}
+
+	test.finalizedBy 'jacocoTestReport'
+
+	jacocoTestReport {
+		reports {
+			xml.enabled false
+			csv.enabled false
+			html.destination "${buildDir}/reports/coverage"
+		}
+		afterEvaluate {
+			classDirectories = files(classDirectories.files.collect {
+				fileTree(dir: it, exclude: jacocoExc)
+			})
+		}
+	}
+
+	jacocoTestCoverageVerification {
+		violationRules {
+			rule {
+				element = 'CLASS'
+				excludes = jacocoExc.stream().map{it.replace('/','.')}.collect()
+				limit {
+					counter = 'INSTRUCTION'
+					minimum = 0.7
+				}
+				limit {
+					counter = 'METHOD'
+					minimum = 0.8
+				}
+			}
+		}
+	}
+	check.dependsOn jacocoTestCoverageVerification
+
 	dependencies {
 		testCompile libpacks.testing
 	}
 
-	dependencyManagement {
-		imports {
-			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCouldBomVersion}"
+	configurations {
+		testCompile {
+			exclude group: 'org.springframework.cloud', module: 'spring-cloud-config-client'
+			exclude group: 'org.springframework.cloud', module: 'spring-cloud-starter-eureka'
 		}
 	}
+
+	dependencyManagement {
+		dependencies {
+			imports {
+				mavenBom "io.spring.platform:platform-bom:${springPlatformVersion}"
+				mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudBomVersion}"
+				mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:${springCloudStreamVersion}"
+			}
+
+			dependency 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0'
+		}
+	}
+
+	task resolveAllDependencies {
+		doLast {
+			configurations.all { it.resolve() }
+		}
+	}
+
 
 	task sourceJar(type: Jar) {
 		from sourceSets.main.allJava
 	}
-}
 
+	task testReport(type: TestReport) {
+		destinationDir = file("$buildDir/reports/allTests")
+		reportOn subprojects*.test.binResultsDir
+	}
+
+	tasks.build.finalizedBy testReport
+}

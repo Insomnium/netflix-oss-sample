@@ -1,6 +1,0 @@
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8989/eureka

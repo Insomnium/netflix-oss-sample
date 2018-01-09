@@ -10,14 +10,35 @@ ext {
                     'org.springframework.boot:spring-boot-starter-actuator'
             ],
 
+            actuator: [
+                    'org.springframework.boot:spring-boot-starter-actuator'
+            ],
+
             cloud_common: [
                     'org.springframework.cloud:spring-cloud-starter-eureka',
                     'org.springframework.cloud:spring-cloud-starter-config',
                     'org.springframework.cloud:spring-cloud-starter-hystrix'
             ],
 
+            cloud_stream_kafka: [
+                    'org.springframework.cloud:spring-cloud-stream',
+                    'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+            ],
+
+            spring_data_mongo: [
+                    'org.springframework.boot:spring-boot-starter-data-mongodb'
+            ],
+
+            cloud_eureka_starter: [
+                    'org.springframework.cloud:spring-cloud-starter-eureka',
+            ],
+
             cloud_eureka_server: [
                     'org.springframework.cloud:spring-cloud-starter-eureka-server'
+            ],
+
+            cloud_config_client: [
+                    'org.springframework.cloud:spring-cloud-config-client'
             ],
 
             cloud_config_server: [
@@ -46,8 +67,13 @@ ext {
 
             testing : [
                     'org.springframework.boot:spring-boot-starter-test',
-                    'org.spockframework:spock-core:1.0-groovy-2.4',
-                    'org.spockframework:spock-spring:1.0-groovy-2.0'
+                    'org.spockframework:spock-core:1.1-groovy-2.4-rc-2',
+                    'org.spockframework:spock-spring:1.1-groovy-2.4-rc-2',
+                    'junit:junit:4.+'
+            ],
+
+            testing_mongo: [
+                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
             ],
 
             lombok : [
