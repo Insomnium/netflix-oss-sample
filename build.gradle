@@ -12,9 +12,9 @@ buildscript {
 					 '**/**Request**',
 					 '**/**Response**',
 					 '**/**Repo**',
-					 'com/epam/hw/netflix/**Application**',
-					 'com/epam/hw/netflix/configuration/**',
-					 'com/epam/hw/netflix/domain/**']
+					 'net/ins/hw/netflix/**Application**',
+					 'net/ins/hw/netflix/configuration/**',
+					 'net/ins/hw/netflix/domain/**']
 	}
 	repositories {
 		mavenCentral()
@@ -28,7 +28,7 @@ buildscript {
 }
 
 configure(subprojects) {
-	group = "com.epam.hw.netflix"
+	group = "net.ins.hw.netflix"
 	apply plugin: 'java'
 	apply plugin: 'groovy'
 	apply plugin: 'idea'
@@ -61,7 +61,6 @@ configure(subprojects) {
 			junitXml.enabled = true
 			html.enabled = true
 		}
-//		outputs.dir snippetsDir
 	}
 
 	test.finalizedBy 'jacocoTestReport'
