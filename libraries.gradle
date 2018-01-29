@@ -10,6 +10,10 @@ ext {
                     'org.springframework.boot:spring-boot-starter-actuator'
             ],
 
+            mvc_datetime: [
+                    'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+            ],
+
             actuator: [
                     'org.springframework.boot:spring-boot-starter-actuator'
             ],

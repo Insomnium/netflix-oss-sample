@@ -1,0 +1,7 @@
+version = '0.0.1'
+
+dependencies {
+    compile libpacks.spring_common
+    compile libpacks.lombok
+    compile libpacks.mvc_datetime
+}

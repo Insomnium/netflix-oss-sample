@@ -9,4 +9,6 @@ include 'commons'
 include 'business-services:credit-limit-api'
 include 'business-services:orders-api'
 
+include 'business-services:standalone-service'
+
 
