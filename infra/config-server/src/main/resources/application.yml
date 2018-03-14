@@ -3,4 +3,4 @@ server:
 
 logging.level:
   root: warn
-  org.springframework: debug
+#  org.springframework: debug

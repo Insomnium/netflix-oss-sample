@@ -2,10 +2,14 @@
 script_full_path=$(dirname "$0")
 
 if [ "$#" -ne 2 ]; then
-    echo "missing keypass and/or storepass"
+    echo "<<< missing keypass and/or storepass"
     exit 1
 fi
 
+echo ">>> Removing previous keystore..."
+rm -rf config-server.jks
+
+echo ">>> Creating new one..."
 keytool -genkeypair -alias config-server-key \
        -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
        -dname 'CN=Config Server,OU=net.ins,O=Insomnium' \
