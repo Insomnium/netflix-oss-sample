@@ -18,6 +18,10 @@ Run **eureka** in default configuration. First instance will run with exceptions
 ```
 docker run --name config-server --net=host -p 8890:8890 -e SPRING_PROFILES_ACTIVE=keystore -e KEY_PWD=$some_key -e KEYSTORE_PWD=$some_secret net.ins.hw.netflix/config-server:0.0.1 --spring.cloud.config.server.git.password='{cipher}$SECRET_FROM_PREVIOUS_STEP'  
 ```
+
+*Running from IDE:* set `--spring.profiles.active=keystore,organization` cmd line args
+along with `JKS_DIR`, `KEYSTORE_PWD`, `KEY_PWD` env variables. 
+
 3. Check that **config-server** works correctly 
 ```
 curl -XGET http://localhost:8890/orders-api/vanaheim | jq
