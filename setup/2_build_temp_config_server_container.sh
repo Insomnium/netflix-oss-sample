@@ -2,6 +2,7 @@
 
 CONTAINER_AWAITING_DELAY_SEC=10
 TMP_CONTAINER_NAME=tmp-config-server-instance
+CONFIG_SERVER_TAG=0.0.1
 
 if [ "$#" -lt 2 ]; then
     echo "<<< missing keypass and/or storepass"
@@ -20,7 +21,7 @@ cd ..
 status
 
 echo ">>> Running temporary container..."
-docker run --name "$TMP_CONTAINER_NAME" -d --net=host -p 8890:8890 -e SPRING_PROFILES_ACTIVE=keystore -e KEY_PWD="$1" -e KEYSTORE_PWD="$2" net.ins.hw.netflix/config-server:0.0.1
+docker run --name "$TMP_CONTAINER_NAME" -d -p 8890:8890 -e SPRING_CLOUD_DISCOVERY_ENABLED=false -e SPRING_PROFILES_ACTIVE=keystore -e KEY_PWD="$1" -e KEYSTORE_PWD="$2" "net.ins.hw.netflix/config-server:$CONFIG_SERVER_TAG"
 status
 
 
