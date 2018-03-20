@@ -10,6 +10,14 @@ ext {
                     'org.springframework.boot:spring-boot-starter-actuator'
             ],
 
+            spring_oauth: [
+                    'org.springframework.security.oauth:spring-security-oauth2'
+            ],
+
+            spring_security: [
+                    'org.springframework.boot:spring-boot-starter-security'
+            ],
+
             actuator: [
                     'org.springframework.boot:spring-boot-starter-actuator'
             ],

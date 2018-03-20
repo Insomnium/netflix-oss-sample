@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secured page</title>
+</head>
+<body>
+<h1 id="greeting"></h1>
+
+<script type="text/javascript">
+    fetch('/me', {credentials: 'include'})
+        .then(resp => {
+            if (!resp.ok) {
+                throw Error(resp.statusText);
+            }
+            return resp;
+        })
+        .then(resp => resp.json())
+        .then(data => document.getElementById('greeting').innerText = `Hello, ${data.userAuthentication.details.name}!`)
+        .catch(console.log);
+</script>
+</body>
+</html>

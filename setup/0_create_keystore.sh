@@ -1,9 +1,14 @@
 #!/bin/bash
 script_full_path=$(dirname "$0")
 
+function usage() {
+	echo "Usage:"
+	echo "$(basename $0)" keypass storepass
+}
+
+
 if [ "$#" -ne 2 ]; then
-    echo "<<< missing keypass and/or storepass"
-    exit 1
+	usage
 fi
 
 echo ">>> Removing previous keystore..."

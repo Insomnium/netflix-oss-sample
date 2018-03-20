@@ -1,12 +1,24 @@
 version: '3'
 
 # see .env file for compose variables
+# docker-compose up -e KEYSTORE_PWD=... -e KEY_PWD=...
+# docker-compose up mongo
 
 services:
-  config-server:
-    image: "net.ins.marketplace/config-server:${CONFIG_SERVER_TAG}"
+  mongo:
+    image: "mongo:${MONGODB_TAG}"
     ports:
-      - "8888:8888"
+      - "${MONGODB_PORT}:${MONGODB_PORT}"
+    deploy:
+      replicas: 1
+
+  config-server:
+    image: "net.ins.hw.netflix/config-server:${CONFIG_SERVER_TAG}"
+    depends_on:
+      - eureka
+#    command: ["sh", "-c", "./wait-for-it.sh", "127.0.0.1:${EUREKA_PORT}", "java", "-jar", "/opt/config-server-${CONFIG_SERVER_TAG}.jar"]
+    ports:
+      - "${CONFIG_SERVER_PORT}:${CONFIG_SERVER_PORT}"
     deploy:
       replicas: 1
       restart_policy:
@@ -14,19 +26,17 @@ services:
         delay: 5s
         max_attempts: 3
     environment:
-      - SPRING_PROFILES_ACTIVE=keystore
-      - KEYSTORE_PWD=storepass123
-      - KEY_PWD=keypass123
-      - SERVER_PORT=8888
-    volumes:
-      - "~/.ssh:/root/.ssh"
+      - SPRING_PROFILES_ACTIVE=keystore,organization
+      - KEYSTORE_PWD="${KEYSTORE_PWD}"
+      - KEY_PWD="${KEY_PWD}"
+      - SERVER_PORT="${CONFIG_SERVER_PORT}"
+#    volumes:
+#      - "~/.ssh:/root/.ssh"
 
   eureka:
-    image: "net.ins.marketplace/eureka:${EUREKA_TAG}"
-    depends_on:
-      - config-server
+    image: "net.ins.hw.netflix/eureka:${EUREKA_TAG}"
     ports:
-      - "8763:8080"
+      - "${EUREKA_PORT}:${EUREKA_PORT}"
     deploy:
       replicas: 1
       restart_policy:
