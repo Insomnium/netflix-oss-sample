@@ -13,6 +13,18 @@ github:
   resource:
     userInfoUri: https://api.github.com/user
 
+facebook:
+  client:
+    clientId: ... # loads from config-server ('{cipher}')
+    clientSecret: ... # loads from config-server ('{cipher}')
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://graph.facebook.com/me
+
 allowed:
     origins:
       - 'http://localhost:9999'

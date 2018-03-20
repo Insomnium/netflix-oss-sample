@@ -77,3 +77,10 @@ security:
 
 # OAuth2 configuration
 [Github SSO help page](https://developer.github.com/apps/building-oauth-apps/authorization-options-for-oauth-apps/)
+
+# Facebook SSO settings
+1. Add `Website` Platform
+2. Add it to `App Domains`
+3. Create and set URL to Privacy Policy: https://stackoverflow.com/a/48134670/1793381
+   
+![settings scrot](facebook_dev_settings.png "Dev settings screenshot")
