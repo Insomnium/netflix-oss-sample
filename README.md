@@ -64,7 +64,7 @@ stored in git repo (decoded by key from **config-server.jks**)
 # Config encryption
 Property encryption example:
 ```bash
-curl http://conig-server-url:config-serve:port/encrypt -d $VALUE_TO_BE_ENCRYPTED
+curl http://config-server-url:config-server-port/encrypt -d $VALUE_TO_BE_ENCRYPTED
 ```
 Result can be set into properties in `'{cipher}$ENCRYPTED_VALUE'` notation and can be stored in public repo. Example:
 ```yaml
