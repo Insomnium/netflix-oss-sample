@@ -79,10 +79,10 @@ security:
 ## Spring 
 [Best tutorial ever?](https://spring.io/guides/tutorials/spring-boot-oauth2/#_social_login_simple)
 
-# Github SSO settings
+## Github SSO settings
 [Github SSO help page](https://developer.github.com/apps/building-oauth-apps/authorization-options-for-oauth-apps/)
 
-# Facebook SSO settings
+## Facebook SSO settings
 1. Add `Website` Platform
 2. Add it to `App Domains`
 3. Create and set URL to Privacy Policy: https://stackoverflow.com/a/48134670/1793381
