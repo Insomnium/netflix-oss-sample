@@ -1,18 +1,17 @@
 server:
  port: ${PORT:9999}
 
-security:
-  oauth2:
-    client:
-      clientId: ... # loads from config-server ('{cipher}')
-      clientSecret: ... # loads from config-server ('{cipher}')
-      accessTokenUri: https://github.com/login/oauth/access_token
-      userAuthorizationUri: https://github.com/login/oauth/authorize
-      tokenName: oauth_token
-      authenticationScheme: query
-      clientAuthenticationScheme: form
-    resource:
-      userInfoUri: https://api.github.com/user
+github:
+  client:
+    clientId: ... # loads from config-server ('{cipher}')
+    clientSecret: ... # loads from config-server ('{cipher}')
+    accessTokenUri: https://github.com/login/oauth/access_token
+    userAuthorizationUri: https://github.com/login/oauth/authorize
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://api.github.com/user
 
 allowed:
     origins:
