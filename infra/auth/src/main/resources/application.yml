@@ -14,6 +14,12 @@ security:
     resource:
       userInfoUri: https://api.github.com/user
 
+endpoints:
+  cors:
+    allowed-headers: [ '*' ]
+    allowed-origins:
+      - 'http://localhost:3000/*'
+
 logging.level:
   root: info
-  org.springframework: info
+  org.springframework.security: debug

@@ -6,4 +6,5 @@ dependencies {
     compile libpacks.groovy
     compile libpacks.spring_security
     compile libpacks.spring_oauth
+    compile libpacks.lombok
 }
