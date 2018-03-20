@@ -4,4 +4,4 @@ server:
 logging.level:
   root: info
   org.springframework: info
-  org.springframework.coud: debug
+  org.springframework.cloud: debug
