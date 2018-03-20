@@ -14,11 +14,9 @@ security:
     resource:
       userInfoUri: https://api.github.com/user
 
-endpoints:
-  cors:
-    allowed-headers: [ '*' ]
-    allowed-origins:
-      - 'http://localhost:3000/*'
+allowed:
+    origins:
+      - 'http://localhost:9999'
 
 logging.level:
   root: info
