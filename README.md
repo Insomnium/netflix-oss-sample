@@ -76,6 +76,10 @@ security:
 ```
 
 # OAuth2 configuration
+## Spring 
+[Best tutorial ever?](https://spring.io/guides/tutorials/spring-boot-oauth2/#_social_login_simple)
+
+# Github SSO settings
 [Github SSO help page](https://developer.github.com/apps/building-oauth-apps/authorization-options-for-oauth-apps/)
 
 # Facebook SSO settings
