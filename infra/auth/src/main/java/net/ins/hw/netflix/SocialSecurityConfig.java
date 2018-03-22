@@ -63,24 +63,23 @@ public class SocialSecurityConfig extends WebSecurityConfigurerAdapter {
         CompositeFilter filter = new CompositeFilter();
         List<Filter> filters = new ArrayList<>();
 
-        OAuth2ClientAuthenticationProcessingFilter githubFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/github");
-        OAuth2RestTemplate githubTemplate = new OAuth2RestTemplate(github(), oAuth2ClientContext);
-        githubFilter.setRestTemplate(githubTemplate);
-        UserInfoTokenServices tokenServices = new UserInfoTokenServices(githubResource().getUserInfoUri(), github().getClientId());
-        tokenServices.setRestTemplate(githubTemplate);
-        githubFilter.setTokenServices(tokenServices);
-        filters.add(githubFilter);
-
-        OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/facebook");
-        OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebook(), oAuth2ClientContext);
-        facebookFilter.setRestTemplate(facebookTemplate);
-        tokenServices = new UserInfoTokenServices(facebookResource().getUserInfoUri(), facebook().getClientId());
-        tokenServices.setRestTemplate(facebookTemplate);
-        facebookFilter.setTokenServices(tokenServices);
-        filters.add(facebookFilter);
+        filters.add(ssoFilter(github(), githubResource(), "/login/github"));
+        filters.add(ssoFilter(facebook(), facebookResource(), "/login/facebook"));
 
         filter.setFilters(filters);
         return filter;
+    }
+
+    private OAuth2ClientAuthenticationProcessingFilter ssoFilter(OAuth2ProtectedResourceDetails client,
+                                                                 ResourceServerProperties resource,
+                                                                 String loginUri) {
+        OAuth2ClientAuthenticationProcessingFilter socialFilter = new OAuth2ClientAuthenticationProcessingFilter(loginUri);
+        OAuth2RestTemplate socialTemplate = new OAuth2RestTemplate(client, oAuth2ClientContext);
+        socialFilter.setRestTemplate(socialTemplate);
+        UserInfoTokenServices tokenServices = new UserInfoTokenServices(resource.getUserInfoUri(), client.getClientId());
+        tokenServices.setRestTemplate(socialTemplate);
+        socialFilter.setTokenServices(tokenServices);
+        return socialFilter;
     }
 
     @Bean
