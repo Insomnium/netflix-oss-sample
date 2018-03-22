@@ -16,7 +16,9 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticat
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -29,6 +31,7 @@ import java.util.List;
 
 @Configuration
 @EnableOAuth2Client // Exactly on a class that extends WebSecurityConfigurerAdapter!
+@EnableAuthorizationServer
 public class SocialSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -40,13 +43,14 @@ public class SocialSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors().and()
-                .antMatcher("/**")
-                .authorizeRequests()
-                    .antMatchers("/", "/login**", "/index.html")
-                    .permitAll()
-                .anyRequest()
-                    .authenticated()
+                .cors()
+                .and()
+                    .antMatcher("/**")
+                        .authorizeRequests()
+                            .antMatchers("/", "/login**", "/index.html").permitAll()
+                    .anyRequest().authenticated()
+                .and()
+                    .exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"))
                 .and()
                     .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
     }
