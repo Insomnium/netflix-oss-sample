@@ -1,13 +1,6 @@
 spring:
   application:
     name: ${APP:config-server}
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://bitbucket.org/ins-ms/infra-configs.git
-          username: Insomnium
-          password: ...
 
 eureka:
    client:

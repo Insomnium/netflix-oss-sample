@@ -5,3 +5,12 @@ logging.level:
   root: info
   org.springframework: info
   org.springframework.cloud: debug
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://bitbucket.org/ins-ms/infra-configs.git
+          username: Insomnium
+          password: ... # to be resolved from separate profile (encrypted for example)
