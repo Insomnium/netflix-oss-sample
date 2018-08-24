@@ -1,11 +1,5 @@
-package net.ins.hw.netflix.controllers
+package net.ins.hw.netflix
 
-import net.ins.hw.netflix.api.CreditLimitAPIClient
-import net.ins.hw.netflix.domain.Amount
-import net.ins.hw.netflix.domain.CreditLimit
-import net.ins.hw.netflix.domain.Currency
-import net.ins.hw.netflix.domain.Order
-import net.ins.hw.netflix.repository.OrdersRepo
 import net.ins.hw.netflix.api.CreditLimitAPIClient
 import net.ins.hw.netflix.domain.Amount
 import net.ins.hw.netflix.domain.CreditLimit
@@ -16,11 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.web.context.WebApplicationContext
+import spock.lang.Specification
 
+import static groovy.json.JsonOutput.toJson
 import static net.ins.hw.netflix.domain.CreditLimitStatus.APPROVED
 import static net.ins.hw.netflix.domain.CreditLimitStatus.EXCEEDED
-import static net.ins.hw.netflix.domain.OrderStatus.DRAFT
-import static groovy.json.JsonOutput.toJson
+import static net.ins.hw.netflix.domain.OrderStatus.*
 import static org.hamcrest.Matchers.notNullValue
 import static org.mockito.Matchers.eq
 import static org.mockito.Mockito.when
@@ -38,7 +36,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         ],
         webEnvironment = RANDOM_PORT
 )
-class OrderControllerSpec extends BaseIntegrationSpec {
+class OrderControllerSpec extends Specification {
+
+    @Autowired
+    WebApplicationContext context
+
+    MockMvc mockMvc
 
     @Autowired
     OrdersRepo ordersRepo
@@ -47,6 +50,7 @@ class OrderControllerSpec extends BaseIntegrationSpec {
     CreditLimitAPIClient creditLimitAPIClient
 
     def setup() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build()
         ordersRepo.deleteAll()
     }
 
@@ -71,7 +75,7 @@ class OrderControllerSpec extends BaseIntegrationSpec {
         orders[0].cardNumber == order.cardNumber
         orders[0].amount == order.amount
         orders[0].ownerId == order.ownerId
-        orders[0].status == order.status
+        orders[0].status == PAID
     }
 
     def 'Fail creating new order if credit limit exceeded'() {
@@ -88,6 +92,7 @@ class OrderControllerSpec extends BaseIntegrationSpec {
 
         then: 'Order was not created'
         response.andExpect(status().isNotAcceptable())
-        ordersRepo.count() == 0
+        ordersRepo.count() == 1
+        ordersRepo.findAll()[0].status == REFUSED
     }
 }

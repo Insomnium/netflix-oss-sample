@@ -1,10 +1,10 @@
 package net.ins.hw.netflix.services;
 
-import net.ins.hw.netflix.api.CreditLimitAPIClient;
-import net.ins.hw.netflix.domain.Order;
-import net.ins.hw.netflix.exceptions.OrderNotCreatedException;
-import net.ins.hw.netflix.repository.OrdersRepo;
 import lombok.RequiredArgsConstructor;
+import net.ins.hw.netflix.api.CreditLimitAPIClient;
+import net.ins.hw.netflix.domain.CreditLimitStatus;
+import net.ins.hw.netflix.domain.Order;
+import net.ins.hw.netflix.domain.OrderStatus;
 import net.ins.hw.netflix.exceptions.OrderNotCreatedException;
 import net.ins.hw.netflix.repository.OrdersRepo;
 import org.springframework.stereotype.Service;
@@ -19,9 +19,11 @@ public class OrderService {
     private final CreditLimitAPIClient limitAPIClient;
 
     public Order createOrder(Order order) {
-        if (limitAPIClient.getCreditLimit(order.getCardNumber(), order.getAmount()).getStatus() == APPROVED) {
-            return ordersRepo.save(order);
+        CreditLimitStatus status = limitAPIClient.getCreditLimit(order.getCardNumber(), order.getAmount()).getStatus();
+        if (status == APPROVED) {
+            return ordersRepo.save(order.setStatus(OrderStatus.PAID));
         }
+        ordersRepo.save(order.setStatus(OrderStatus.REFUSED));
         throw new OrderNotCreatedException("Credit limit exceeded");
     }
 }

@@ -7,5 +7,4 @@ bootRepackage {
 dependencies {
     compile libpacks.lombok
     compile libpacks.cloud_feign
-    compile libpacks.spring_data_mongo
 }

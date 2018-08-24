@@ -1,5 +1,5 @@
 server:
- port: ${PORT:8890}
+ port: 8890
 
 logging.level:
   root: warn

@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://bitbucket.org/ins-ms/infra-configs.git
+          uri: https://Insomnium@bitbucket.org/Insomnium/homework-configs.git
           username: Insomnium
           password: ...
 
@@ -20,8 +20,8 @@ eureka:
      appGroupName: infra
      preferIpAddress: true
 
-# see http://localhost:8888/admin/env
-# see http://localhost:8888/eureka_server/default
+# see http://localhost:8890/admin/env
+# see http://localhost:8890/eureka_server/default
 # see http://localhost:8890/orders-api/vanaheim
 
 management:

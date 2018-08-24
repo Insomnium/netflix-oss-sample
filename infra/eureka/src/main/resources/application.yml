@@ -1,2 +1,2 @@
 server:
-  port: ${EUREKA_PORT:8763}
+  port: 8763

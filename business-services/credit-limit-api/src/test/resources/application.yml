@@ -1,0 +1,3 @@
+dummy:
+  limits:
+    - { id: '6519c0db-7b0b-4bc4-b769-eb49633b26b9', ownerId: '000001', cardNumber: '00000000000000000001', amount: { amount: 100000000, currency: { code: 'EUR', minorUnits: 100 } } }

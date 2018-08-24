@@ -25,10 +25,6 @@ ext {
                     'org.springframework.cloud:spring-cloud-starter-stream-kafka'
             ],
 
-            spring_data_mongo: [
-                    'org.springframework.boot:spring-boot-starter-data-mongodb'
-            ],
-
             cloud_eureka_starter: [
                     'org.springframework.cloud:spring-cloud-starter-eureka',
             ],
@@ -70,10 +66,6 @@ ext {
                     'org.spockframework:spock-core:1.1-groovy-2.4-rc-2',
                     'org.spockframework:spock-spring:1.1-groovy-2.4-rc-2',
                     'junit:junit:4.+'
-            ],
-
-            testing_mongo: [
-                    'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
             ],
 
             lombok : [

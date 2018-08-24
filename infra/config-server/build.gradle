@@ -5,9 +5,3 @@ dependencies {
     compile libpacks.cloud_eureka_starter
     compile libpacks.actuator
 }
-
-docker {
-    javaApplication {
-        baseImage = 'net.ins.docker/java-jce:8'
-    }
-}

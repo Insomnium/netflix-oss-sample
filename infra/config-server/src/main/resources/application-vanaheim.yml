@@ -1,6 +1,0 @@
-spring:
-  cloud:
-    config:
-      server:
-        git:
-          password: '{cipher}b438b8be80c2ea875a9edbba3be71c8f11ab3bdd442c30c0fd499369ec0c6643'
